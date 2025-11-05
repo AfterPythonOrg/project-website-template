@@ -27,3 +27,6 @@ vite.config.ts.timestamp-*
 
 # vscode settings
 **/.vscode/
+
+.cursor/
+.claude/

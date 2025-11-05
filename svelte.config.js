@@ -2,7 +2,7 @@ import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-const outputDir = "../afterpython/_build";
+const outputDir = "build";
 
 const config = {
 	preprocess: [vitePreprocess(), mdsvex()],
@@ -17,6 +17,8 @@ const config = {
 			strict: true,
 		}),
 		alias: {
+			// '@': 'src/',
+			'$components': 'src/lib/components/',
 			'$static': 'static/',
 		},
 	},

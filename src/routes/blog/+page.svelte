@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
   
   const { data } = $props();
 </script>
@@ -11,7 +10,7 @@
     <div>
       <h2>{post.title}</h2>
       <p>{post.excerpt}</p>
-      <a href={resolve(`/blog/${post.slug}`)} class="read-more">
+      <a href={`/blog/${post.slug}`} class="read-more">
         Read More →
       </a>
     </div>

@@ -8,6 +8,7 @@
 		"build": "vite build",
 		"build:watch": "vite build --watch --mode development",
 		"preview": "vite preview",
+		"serve": "pnpx serve",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
