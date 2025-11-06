@@ -8,7 +8,19 @@
   const repositoryUrl: string | undefined = metadataJson.project_url?.find((url: string) =>
     url.startsWith('repository,')
   )?.split(', ')[1];
+
+  // Page-specific title
+  const pageTitle = metadataJson.name
+    ? `${metadataJson.name} - Home`
+    : 'Home';
 </script>
+
+<svelte:head>
+  <title>{pageTitle}</title>
+  {#if metadataJson.summary}
+		<meta name="description" content={metadataJson.summary} />
+	{/if}
+</svelte:head>
 
 {#if metadataJson.metadataError}
   <!-- Error state: metadata.json is missing -->

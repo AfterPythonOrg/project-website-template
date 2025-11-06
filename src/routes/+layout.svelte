@@ -10,7 +10,14 @@
 	const docsUrl = metadataJson.project_url?.find((url: string) =>
 		url.startsWith('documentation,')
 	)?.split(', ')[1];
+
+	// Dynamic title from metadata
+	const siteTitle = metadataJson.name || 'AfterPython Project Website';
 </script>
+
+<svelte:head>
+	<title>{siteTitle}</title>
+</svelte:head>
 
 <div class="bg-bg50 min-h-screen">
 	<nav class="container mx-auto py-3 text-tx50 text-base font-medium">
