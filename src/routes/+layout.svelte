@@ -3,12 +3,18 @@
 	import type { LayoutProps } from './$types';
 	import ThemeToggle from '$components/ThemeToggle.svelte';
 	import Logo from '$components/Logo.svelte';
+	import Footer from '$components/Footer.svelte';
 
 	let { data: metadataJson, children }: LayoutProps = $props();
 
 	// Extract documentation URL safely
 	const docsUrl = metadataJson.project_url?.find((url: string) =>
 		url.startsWith('documentation,')
+	)?.split(', ')[1];
+
+	// Extract repository URL safely
+	const repositoryUrl = metadataJson.project_url?.find((url: string) =>
+		url.startsWith('repository,')
 	)?.split(', ')[1];
 
 	// Dynamic title from metadata
@@ -19,7 +25,7 @@
 	<title>{siteTitle}</title>
 </svelte:head>
 
-<div class="bg-bg50 min-h-screen">
+<div class="bg-bg50 min-h-screen flex flex-col">
 	<nav class="container mx-auto py-3 text-tx50 text-base font-medium">
 		<div class="flex items-center">
 			<Logo size="md" />
@@ -27,7 +33,7 @@
 				{#if docsUrl}
 					<li>
 						<a href={docsUrl} target="_blank" rel="noopener noreferrer">
-							Docs
+							Documentation
 						</a>
 					</li>
 				{/if}
@@ -55,4 +61,6 @@
 	</nav>
 
 	{@render children()}
+
+	<Footer projectName={metadataJson.name} projectSummary={metadataJson.summary} {repositoryUrl} {docsUrl}/>
 </div>
