@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { PageProps } from './$types';
   import MarkdownRenderer from '$components/MarkdownRenderer.svelte';
+  import StarIcon from '$components/StarIcon.svelte';
 
   const { data: metadataJson }: PageProps = $props();
 
@@ -44,9 +45,15 @@
 
     <div class="flex gap-4 flex-wrap justify-center">
       {#if repositoryUrl}
-        <button class="px-6 py-3 border-2 border-tx300 text-tx50 rounded-lg font-medium hover:bg-bg200 transition-colors">
-          <a href={repositoryUrl} target="_blank" rel="noopener noreferrer">View on GitHub</a>
-        </button>
+        <a
+          href={repositoryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group px-6 py-3 bg-yellow-400 dark:bg-yellow-400 text-gray-900 dark:text-gray-900 rounded-lg font-semibold hover:bg-yellow-500 dark:hover:bg-yellow-500 transition-all duration-200 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+        >
+          <StarIcon size={20} filled={true} class="star-blink" />
+          Star on GitHub
+        </a>
       {/if}
       <button class="px-6 py-3 bg-pm500 text-white rounded-lg font-medium hover:bg-pm600 transition-colors">
         Go to Playground
@@ -60,3 +67,14 @@
     {/if}
   </section>
 {/if}
+
+<style>
+  @keyframes star-blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+  }
+
+  :global(.star-blink) {
+    animation: star-blink 1.5s ease-in-out infinite;
+  }
+</style>
