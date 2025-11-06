@@ -24,10 +24,10 @@
   <!-- Normal state: metadata loaded successfully -->
   <section class="flex mt-[12vh] flex-col gap-6 items-center justify-center min-h-[60vh] text-center px-4">
     <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-tx50">
-      {metadataJson.name || 'Untitled Project'}
+      {metadataJson.name}
     </h1>
     <p class="text-xl md:text-2xl text-tx300 max-w-2xl">
-      {metadataJson.summary || 'No summary available'}
+      {metadataJson.summary}
     </p>
 
     <div class="flex gap-4 flex-wrap justify-center">

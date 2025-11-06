@@ -2,6 +2,7 @@
 	import '../app.css';
 	import type { LayoutProps } from './$types';
 	import ThemeToggle from '$components/ThemeToggle.svelte';
+	import Logo from '$components/Logo.svelte';
 
 	let { data: metadataJson, children }: LayoutProps = $props();
 
@@ -14,6 +15,7 @@
 <div class="bg-bg50 min-h-screen">
 	<nav class="container mx-auto py-3 text-tx50 text-base font-medium">
 		<div class="flex items-center">
+			<Logo size="md" />
 			<ul class="flex gap-18 justify-center flex-1">
 				{#if docsUrl}
 					<li>
