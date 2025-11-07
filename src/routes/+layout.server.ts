@@ -15,7 +15,7 @@ export const load: LayoutServerLoad = async () => {
       summary: '',
       description: '',
       project_url: [],
-      metadataError: 'Project metadata not found. Please ensure metadata.json exists in the static folder. Did you forget to run `afpy build`?',
+      metadataError: 'Project metadata not found. Please ensure metadata.json exists in the static folder. Did you forget to run `ap build`?',
     };
   }
 };
