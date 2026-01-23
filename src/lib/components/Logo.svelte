@@ -13,12 +13,12 @@
 	let hasLogo = $state(true);
 
 	// Size classes for logo image
-	const sizeStyles = {
-    sm: '2.5rem',   // actual CSS values
-    md: '3.5rem',
-    lg: '4.5rem',
-    xl: '5.5rem'
-};
+	const sizeClasses = {
+		sm: 'h-10',
+		md: 'h-14',
+		lg: 'h-18',
+		xl: 'h-22'
+	};
 
 	// Font size classes for logo text - matching MyST's responsive sizing
 	const textSizeClasses = {
@@ -52,8 +52,7 @@
 		<img
 			src={asset('/logo.svg')}
 			alt="Logo"
-			style={`height: ${sizeStyles[size]};`}
-			class="w-auto"
+			class="{sizeClasses[size]} w-auto"
 			onerror={handleImageError}
 		/>
 		{#if showText && text}
