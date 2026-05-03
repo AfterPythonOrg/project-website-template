@@ -61,6 +61,9 @@
 						<a href={resolve('/blog')} data-sveltekit-preload-data>Blog</a>
 					</li>
 				{/if}
+				<li>
+					<a href={resolve('/faq')} data-sveltekit-preload-data>FAQs</a>
+				</li>
 				<!-- <li>
 					<a href={'/exercises'}>Exercises</a>
 				</li>
