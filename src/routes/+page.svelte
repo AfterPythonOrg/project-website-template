@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
 	import MarkdownRenderer from '$components/MarkdownRenderer.svelte';
+	import Announcement from '$components/Announcement.svelte';
 	import StarIcon from '$components/StarIcon.svelte';
 	import { dev } from '$app/environment';
 	import { env } from '$env/dynamic/public';
@@ -32,6 +33,10 @@
 		<meta name="twitter:description" content={data.summary} />
 	{/if}
 </svelte:head>
+
+{#if data.announcement}
+	<Announcement content={data.announcement} />
+{/if}
 
 {#if data.metadataError}
 	<!-- Error state: metadata.json is missing -->
