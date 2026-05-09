@@ -44,7 +44,7 @@
 				{#if data.contentTypes?.api_reference}
 					<li>
 						<a
-							href={resolve('/api_reference')}
+							href="{resolve('/api_reference')}/"
 							target="_blank"
 							rel="external noopener noreferrer"
 						>
