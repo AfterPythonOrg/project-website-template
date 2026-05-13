@@ -52,5 +52,13 @@
 		"typescript-eslint": "^8.59.1",
 		"vite": "^8.0.10",
 		"vitest": "^4.1.5"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild",
+			"@tailwindcss/oxide",
+			"@parcel/watcher",
+			"sharp"
+		]
 	}
 }
