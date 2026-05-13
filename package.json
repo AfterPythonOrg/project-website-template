@@ -3,6 +3,7 @@
 	"version": "0.3.3",
 	"license": "Apache-2.0",
 	"type": "module",
+	"packageManager": "pnpm@11.1.1",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && pagefind --site build",
@@ -52,13 +53,5 @@
 		"typescript-eslint": "^8.59.1",
 		"vite": "^8.0.10",
 		"vitest": "^4.1.5"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild",
-			"@tailwindcss/oxide",
-			"@parcel/watcher",
-			"sharp"
-		]
 	}
 }
