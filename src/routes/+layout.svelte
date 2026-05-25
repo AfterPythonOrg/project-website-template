@@ -8,9 +8,13 @@
 	import GitHubIcon from '$components/GitHubIcon.svelte';
 	import { dev } from '$app/environment';
 	import { env } from '$env/dynamic/public';
-	import { resolve } from '$app/paths';
+	import { base, resolve } from '$app/paths';
 
 	let { data, children }: LayoutProps = $props();
+
+	const faviconType = $derived(
+		data.favicon?.endsWith('.svg') ? 'image/svg+xml' : 'image/x-icon'
+	);
 
 	// Extract repository URL safely
 	const repositoryUrl = $derived(
@@ -23,6 +27,7 @@
 
 <svelte:head>
 	<title>{siteTitle}</title>
+	<link rel="icon" type={faviconType} href="{base}/{data.favicon}" />
 </svelte:head>
 
 <div class="flex min-h-screen flex-col bg-bg50">
