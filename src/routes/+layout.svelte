@@ -8,7 +8,7 @@
 	import GitHubIcon from '$components/GitHubIcon.svelte';
 	import { dev } from '$app/environment';
 	import { env } from '$env/dynamic/public';
-	import { base, resolve } from '$app/paths';
+	import { resolve } from '$app/paths';
 
 	let { data, children }: LayoutProps = $props();
 
@@ -27,7 +27,7 @@
 
 <svelte:head>
 	<title>{siteTitle}</title>
-	<link rel="icon" type={faviconType} href="{base}/{data.favicon}" />
+	<link rel="icon" type={faviconType} href={resolve(`/${data.favicon}`)} />
 </svelte:head>
 
 <div class="flex min-h-screen flex-col bg-bg50">
