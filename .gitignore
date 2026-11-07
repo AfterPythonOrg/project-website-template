@@ -40,3 +40,4 @@ static/llms.txt
 static/readme_py/
 static/api_reference/
 static/*.json
+.vitest/
