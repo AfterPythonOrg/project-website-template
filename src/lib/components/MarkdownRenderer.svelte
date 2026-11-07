@@ -5,7 +5,7 @@
   import hljs from 'highlight.js';
   import 'highlight.js/styles/github-dark.css';
 
-  const { content } = $props<{ content: string }>();
+  const { content }: { content: string } = $props();
 
   // Create a new marked instance to avoid global state issues
   const marked = new Marked();

@@ -1,6 +1,6 @@
 import type { LayoutServerLoad } from './$types';
-import type { ContentType, ContentJson } from '$lib/types';
-import { loadContentByType } from '$lib/utils';
+import type { ContentType, ContentJson } from '#lib/types/index.ts';
+import { loadContentByType } from '#lib/utils/index.ts';
 
 export const prerender = true;
 

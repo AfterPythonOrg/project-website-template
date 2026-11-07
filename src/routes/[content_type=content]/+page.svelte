@@ -1,11 +1,11 @@
 <script lang="ts">
-	import FeaturedPost from '$lib/components/FeaturedPost.svelte';
-	import PostCard from '$components/PostCard.svelte';
-	import FilterBar from '$lib/components/FilterBar.svelte';
-	import Pagination from '$lib/components/Pagination.svelte';
-	import { getThumbnailUrl } from '$lib/utils/content';
+	import FeaturedPost from '#lib/components/FeaturedPost.svelte';
+	import PostCard from '#lib/components/PostCard.svelte';
+	import FilterBar from '#lib/components/FilterBar.svelte';
+	import Pagination from '#lib/components/Pagination.svelte';
+	import { getThumbnailUrl } from '#lib/utils/content.ts';
 	import type { PageData } from './$types';
-	import type { ContentJson } from '$lib/types';
+	import type { ContentJson } from '#lib/types/index.ts';
 
 	let { data }: { data: PageData } = $props();
 

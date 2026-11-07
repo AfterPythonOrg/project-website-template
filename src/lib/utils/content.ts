@@ -1,10 +1,22 @@
-import type { ContentType, ContentJson } from '$lib/types';
-import { dev } from '$app/environment';
-import { env } from '$env/dynamic/public';
+import type { ContentType, ContentJson } from '#lib/types/index.ts';
+import { dev } from '$app/env';
+import {
+	PUBLIC_BLOG_URL,
+	PUBLIC_TUTORIAL_URL,
+	PUBLIC_EXAMPLE_URL,
+	PUBLIC_GUIDE_URL
+} from '$app/env/public';
 import { resolve } from '$app/paths';
 
-// All valid content types (single source of truth)
-export const CONTENT_TYPES = ['blog', 'tutorial', 'example', 'guide'] as const;
+export { CONTENT_TYPES } from './content-types.ts';
+
+// Dev-server URLs (set by `ap dev`) for each content type, see src/env.ts
+const DEV_CONTENT_URLS: Record<ContentType, string> = {
+	blog: PUBLIC_BLOG_URL,
+	tutorial: PUBLIC_TUTORIAL_URL,
+	example: PUBLIC_EXAMPLE_URL,
+	guide: PUBLIC_GUIDE_URL
+};
 
 /**
  * Loads content JSON file for a given content type
@@ -16,7 +28,7 @@ export const CONTENT_TYPES = ['blog', 'tutorial', 'example', 'guide'] as const;
 export async function loadContentByType(contentType: ContentType): Promise<ContentJson[]> {
 	try {
 		// Dynamic import of content JSON file (blog.json, tutorial.json, etc.)
-		const contentData = await import(`$static/${contentType}.json`);
+		const contentData = await import(`#static/${contentType}.json`);
 
 		// Return data as-is - AfterPython already provides flattened structure
 		return contentData.default;
@@ -35,8 +47,8 @@ export async function loadContentByType(contentType: ContentType): Promise<Conte
  */
 export function getPostHref(post: ContentJson, contentType: ContentType): string {
 	return dev
-		? env[`PUBLIC_${contentType.toUpperCase()}_URL`] + `/${post.slug}`
-		: resolve(`/${contentType}/${post.slug}`);
+		? DEV_CONTENT_URLS[contentType] + `/${post.slug}`
+		: resolve('/[content_type=content]/[slug]', { content_type: contentType, slug: post.slug });
 }
 
 /**

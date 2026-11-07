@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ContentType } from '$lib/types';
-	import { CONTENT_TYPES } from '$lib/utils/content';
+	import type { ContentType } from '#lib/types/index.ts';
+	import { CONTENT_TYPES } from '#lib/utils/content.ts';
 	import { goto } from '$app/navigation';
 
 	let {

@@ -1,1 +1,1 @@
-export { loadContentByType, CONTENT_TYPES } from './content';
+export { loadContentByType, CONTENT_TYPES } from './content.ts';

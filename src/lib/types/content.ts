@@ -1,4 +1,4 @@
-import { CONTENT_TYPES } from '$lib/utils/content';
+import type { CONTENT_TYPES } from '#lib/utils/content-types.ts';
 
 // Derive the type from the constant
 export type ContentType = (typeof CONTENT_TYPES)[number];
