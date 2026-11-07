@@ -21,13 +21,7 @@
 	);
 
 	// Extract all unique tags from posts
-	const allTags = $derived.by(() => {
-		const tagSet = new Set<string>();
-		data.posts.forEach((post) => {
-			post.tags?.forEach((tag) => tagSet.add(tag));
-		});
-		return Array.from(tagSet).sort();
-	});
+	const allTags = $derived([...new Set(data.posts.flatMap((post) => post.tags ?? []))].sort());
 
 	// Filter posts by selected tags
 	const filteredPosts = $derived.by(() => {
@@ -89,8 +83,10 @@
 
 	// Reset to page 1 when filters change
 	$effect(() => {
-		// This runs whenever selectedTags or sortBy changes
+		// Reading these makes the effect re-run whenever selectedTags or sortBy changes
+		// oxlint-disable-next-line no-unused-expressions
 		selectedTags;
+		// oxlint-disable-next-line no-unused-expressions
 		sortBy;
 		currentPage = 1;
 	});

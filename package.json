@@ -46,7 +46,6 @@
 		"vite-plus": "catalog:"
 	},
 	"imports": {
-		"#lib": "./src/lib/index.ts",
 		"#lib/*": "./src/lib/*",
 		"#static/*": "./static/*"
 	}

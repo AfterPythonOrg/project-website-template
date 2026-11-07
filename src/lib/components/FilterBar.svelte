@@ -2,6 +2,7 @@
 	import type { ContentType } from '#lib/types/index.ts';
 	import { CONTENT_TYPES } from '#lib/utils/content.ts';
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 
 	let {
 		contentType,
@@ -54,7 +55,7 @@
 
 	// Handle content type change
 	function onContentTypeChange(newType: ContentType) {
-		goto(`/${newType}`);
+		goto(resolve('/[content_type=content]', { content_type: newType }));
 	}
 </script>
 
