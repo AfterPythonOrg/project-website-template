@@ -4,25 +4,36 @@ import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { COMMENT_CONTENT_TYPES, injectCommentsScript } from './scripts/inject-comments.ts';
 import { defineConfig, lazyPlugins, type Plugin } from 'vite-plus';
 
 const outputDir = 'build';
 
 // Dev only: serve static/<dir>/index.html for directory URLs (e.g. /doc/, /api_reference/),
 // as static hosts do in production. Lets plain `vp dev` open the prebuilt MyST pages in static/.
+// Also injects the comment loader into content pages (done by scripts/inject-comments.ts on build).
 function serveStaticDirIndex(): Plugin {
 	return {
 		name: 'serve-static-dir-index',
 		apply: 'serve',
 		configureServer(server) {
-			server.middlewares.use((req, _res, next) => {
+			server.middlewares.use((req, res, next) => {
 				const url = new URL(req.url ?? '/', 'http://localhost');
 				const base = server.config.base.replace(/\/$/, '');
 				const dir = url.pathname.slice(base.length).replace(/\/$/, '');
-				if (dir && !dir.includes('.') && existsSync(`static${dir}/index.html`)) {
-					req.url = `${base}${dir}/index.html${url.search}`;
+				const file =
+					dir && !dir.includes('.') && existsSync(`static${dir}/index.html`)
+						? `${dir}/index.html`
+						: dir.endsWith('.html') && existsSync(`static${dir}`)
+							? dir
+							: '';
+				if (!file) return next();
+				if (COMMENT_CONTENT_TYPES.includes(file.split('/')[1])) {
+					res.setHeader('Content-Type', 'text/html; charset=utf-8');
+					return res.end(injectCommentsScript(readFileSync(`static${file}`, 'utf-8'), base));
 				}
+				req.url = `${base}${file}${url.search}`;
 				next();
 			});
 		}
@@ -272,7 +283,8 @@ export default defineConfig(({ mode }) => {
 				'yarn.lock',
 				'bun.lock',
 				'bun.lockb',
-				'/static/'
+				'/static/',
+				'/dev/'
 			]
 		},
 		plugins: lazyPlugins(() => [
