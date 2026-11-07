@@ -4,6 +4,8 @@
 	import { gfmHeadingId } from 'marked-gfm-heading-id';
 	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github-dark.css';
+	import { resolve } from '$app/paths';
+	import type { Path } from '$app/types';
 
 	const { content }: { content: string } = $props();
 
@@ -12,6 +14,18 @@
 
 	// Configure marked with extensions
 	marked.use(
+		{
+			// Root-relative links/images (e.g. "/faq") would skip BASE_PATH; prefix them
+			walkTokens(token) {
+				if (
+					(token.type === 'link' || token.type === 'image') &&
+					token.href.startsWith('/') &&
+					!token.href.startsWith('//')
+				) {
+					token.href = resolve(token.href.slice(1) as Path);
+				}
+			}
+		},
 		gfmHeadingId(),
 		markedHighlight({
 			langPrefix: 'hljs language-',

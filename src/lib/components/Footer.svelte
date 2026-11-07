@@ -10,7 +10,7 @@
 		PUBLIC_BLOG_URL
 	} from '$app/env/public';
 
-	import { resolve } from '$app/paths';
+	import { asset, resolve } from '$app/paths';
 	import type { ContentType } from '#lib/types/index.ts';
 
 	type FooterProps = {
@@ -112,7 +112,7 @@
 
 				<!-- Powered by AfterPython -->
 				<div class="flex items-center gap-2 text-sm text-tx300">
-					<img src="/afterpython.svg" alt="AfterPython" class="h-5 w-auto" />
+					<img src={asset('afterpython.svg')} alt="AfterPython" class="h-5 w-auto" />
 					<span
 						>Powered by <a
 							href="https://afterpython.org"

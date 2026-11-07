@@ -5,7 +5,7 @@
 	import StarIcon from '#lib/components/StarIcon.svelte';
 	import { dev } from '$app/env';
 	import { PUBLIC_DOC_URL } from '$app/env/public';
-	import { resolve } from '$app/paths';
+	import { asset, resolve } from '$app/paths';
 
 	const { data }: PageProps = $props();
 
@@ -26,7 +26,7 @@
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={data.summary} />
 		<meta property="og:type" content="website" />
-		<meta property="og:image" content="/thumbnail.png" />
+		<meta property="og:image" content={asset('thumbnail.png')} />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={pageTitle} />
