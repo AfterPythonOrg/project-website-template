@@ -29,9 +29,6 @@ importers:
       '@sveltejs/kit':
         specifier: ^3.1.1
         version: 3.1.1(@sveltejs/vite-plugin-svelte@7.3.1(@voidzero-dev/vite-plus-core@1.5.0(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(typescript@6.0.3))(svelte@5.57.3))(@voidzero-dev/vite-plus-core@1.5.0(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(typescript@6.0.3))(svelte@5.57.3)(typescript@6.0.3)
-      '@sveltejs/load-config':
-        specifier: ^0.2.2
-        version: 0.2.3
       '@sveltejs/vite-plugin-svelte':
         specifier: ^7.3.1
         version: 7.3.1(@voidzero-dev/vite-plus-core@1.5.0(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(typescript@6.0.3))(svelte@5.57.3)
@@ -59,9 +56,6 @@ importers:
       eslint-plugin-svelte:
         specifier: ^3.24.0
         version: 3.24.0(eslint@10.14.0(jiti@2.7.0))(svelte@5.57.3)
-      globals:
-        specifier: ^17.14.0
-        version: 17.14.0
       highlight.js:
         specifier: ^11.12.0
         version: 11.12.0
@@ -1416,10 +1410,6 @@ packages:
 
   globals@16.5.0:
     resolution: {integrity: sha512-c/c15i26VrJ4IRt5Z89DnIzCGDn9EcebibhAOjw5ibqEHsE1wLUgkPn9RDmNcUKyU87GeaL633nyJ+pplFR2ZQ==}
-    engines: {node: '>=18'}
-
-  globals@17.14.0:
-    resolution: {integrity: sha512-UtdkTVyAJePQv0J2M9Xe4L0ruNSDV314XiIJsADI2Zf40bcdAonE/D/OhAU8AT99oij9mhLByb+NvA3QWZYgCg==}
     engines: {node: '>=18'}
 
   graceful-fs@4.2.11:
@@ -3062,8 +3052,6 @@ snapshots:
       is-glob: 4.0.3
 
   globals@16.5.0: {}
-
-  globals@17.14.0: {}
 
   graceful-fs@4.2.11: {}
 
