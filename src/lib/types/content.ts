@@ -13,5 +13,5 @@ export interface ContentJson {
 	tags?: string[];
 	thumbnail?: string;
 	thumbnailOptimized?: string;
-	featured?: boolean;  // if true, it is a featured post
+	featured?: boolean; // if true, it is a featured post
 }

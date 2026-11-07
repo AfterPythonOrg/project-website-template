@@ -19,9 +19,7 @@
 
 	let { data, children }: LayoutProps = $props();
 
-	const faviconType = $derived(
-		data.favicon?.endsWith('.svg') ? 'image/svg+xml' : 'image/x-icon'
-	);
+	const faviconType = $derived(data.favicon?.endsWith('.svg') ? 'image/svg+xml' : 'image/x-icon');
 
 	// Extract repository URL safely
 	const repositoryUrl = $derived(

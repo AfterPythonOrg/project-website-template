@@ -95,8 +95,6 @@
 	const displayTitle = $derived.by(() => {
 		return data.contentType.charAt(0).toUpperCase() + data.contentType.slice(1);
 	});
-
-	
 </script>
 
 <svelte:head>
@@ -120,12 +118,7 @@
 		</div>
 	{/if}
 
-	<FilterBar
-		contentType={data.contentType}
-		{allTags}
-		bind:selectedTags
-		bind:sortBy
-	/>
+	<FilterBar contentType={data.contentType} {allTags} bind:selectedTags bind:sortBy />
 
 	<!-- Grid Items -->
 	{#if paginatedGridPosts.length > 0}
