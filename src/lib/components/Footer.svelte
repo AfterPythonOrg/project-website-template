@@ -1,14 +1,6 @@
 <script lang="ts">
 	import GitHubIcon from '#lib/components/GitHubIcon.svelte';
-	import { dev } from '$app/env';
-
-	import {
-		PUBLIC_DOC_URL,
-		PUBLIC_TUTORIAL_URL,
-		PUBLIC_EXAMPLE_URL,
-		PUBLIC_GUIDE_URL,
-		PUBLIC_BLOG_URL
-	} from '$app/env/public';
+	import { devContentUrl } from '#lib/utils/index.ts';
 
 	import { asset, resolve } from '$app/paths';
 	import type { ContentType } from '#lib/types/index.ts';
@@ -48,17 +40,17 @@
 			<div>
 				<h3 class="mb-3 text-lg font-semibold text-tx50">Resources</h3>
 				<ul class="space-y-2 text-sm text-tx300">
-					{#if dev ? PUBLIC_DOC_URL : contentTypes?.doc}
+					{#if devContentUrl('doc') || contentTypes?.doc}
 						<li>
 							<a
-								href={dev ? PUBLIC_DOC_URL : resolve('doc')}
+								href={devContentUrl('doc') || resolve('doc')}
 								target="_blank"
 								rel="external noopener noreferrer"
 								class="transition-colors hover:text-tx50">Documentation</a
 							>
 						</li>
 					{/if}
-					{#if dev ? PUBLIC_TUTORIAL_URL : contentTypes?.tutorial}
+					{#if devContentUrl('tutorial') || contentTypes?.tutorial}
 						<li>
 							<a
 								href={resolve('tutorial')}
@@ -67,7 +59,7 @@
 							>
 						</li>
 					{/if}
-					{#if dev ? PUBLIC_EXAMPLE_URL : contentTypes?.example}
+					{#if devContentUrl('example') || contentTypes?.example}
 						<li>
 							<a
 								href={resolve('example')}
@@ -76,7 +68,7 @@
 							>
 						</li>
 					{/if}
-					{#if dev ? PUBLIC_GUIDE_URL : contentTypes?.guide}
+					{#if devContentUrl('guide') || contentTypes?.guide}
 						<li>
 							<a
 								href={resolve('guide')}
@@ -85,7 +77,7 @@
 							>
 						</li>
 					{/if}
-					{#if dev ? PUBLIC_BLOG_URL : contentTypes?.blog}
+					{#if devContentUrl('blog') || contentTypes?.blog}
 						<li>
 							<a
 								href={resolve('blog')}

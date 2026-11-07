@@ -4,9 +4,30 @@ import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig, lazyPlugins } from 'vite-plus';
+import { existsSync } from 'node:fs';
+import { defineConfig, lazyPlugins, type Plugin } from 'vite-plus';
 
 const outputDir = 'build';
+
+// Dev only: serve static/<dir>/index.html for directory URLs (e.g. /doc/, /api_reference/),
+// as static hosts do in production. Lets plain `vp dev` open the prebuilt MyST pages in static/.
+function serveStaticDirIndex(): Plugin {
+	return {
+		name: 'serve-static-dir-index',
+		apply: 'serve',
+		configureServer(server) {
+			server.middlewares.use((req, _res, next) => {
+				const url = new URL(req.url ?? '/', 'http://localhost');
+				const base = server.config.base.replace(/\/$/, '');
+				const dir = url.pathname.slice(base.length).replace(/\/$/, '');
+				if (dir && !dir.includes('.') && existsSync(`static${dir}/index.html`)) {
+					req.url = `${base}${dir}/index.html${url.search}`;
+				}
+				next();
+			});
+		}
+	};
+}
 
 export default defineConfig(({ mode }) => {
 	const isDev = mode === 'development';
@@ -255,6 +276,7 @@ export default defineConfig(({ mode }) => {
 			]
 		},
 		plugins: lazyPlugins(() => [
+			serveStaticDirIndex(),
 			tailwindcss(),
 			sveltekit({
 				preprocess: [vitePreprocess(), mdsvex()],

@@ -3,8 +3,7 @@
 	import MarkdownRenderer from '#lib/components/MarkdownRenderer.svelte';
 	import Announcement from '#lib/components/Announcement.svelte';
 	import StarIcon from '#lib/components/StarIcon.svelte';
-	import { dev } from '$app/env';
-	import { PUBLIC_DOC_URL } from '$app/env/public';
+	import { devContentUrl } from '#lib/utils/index.ts';
 	import { asset, resolve } from '$app/paths';
 
 	const { data }: PageProps = $props();
@@ -90,7 +89,7 @@
 			{/if}
 			{#if data.contentTypes?.doc}
 				<a
-					href={dev ? PUBLIC_DOC_URL : resolve('doc')}
+					href={devContentUrl('doc') || resolve('doc')}
 					rel="external noopener noreferrer"
 					class="rounded-lg bg-pm500 px-6 py-3 font-medium text-white transition-colors hover:bg-pm600"
 				>

@@ -6,14 +6,7 @@
 	import Footer from '#lib/components/Footer.svelte';
 	import SearchBar from '#lib/components/SearchBar.svelte';
 	import GitHubIcon from '#lib/components/GitHubIcon.svelte';
-	import { dev } from '$app/env';
-	import {
-		PUBLIC_DOC_URL,
-		PUBLIC_TUTORIAL_URL,
-		PUBLIC_EXAMPLE_URL,
-		PUBLIC_GUIDE_URL,
-		PUBLIC_BLOG_URL
-	} from '$app/env/public';
+	import { devContentUrl } from '#lib/utils/index.ts';
 	import { asset, resolve } from '$app/paths';
 	import type { AssetPath } from '$app/types';
 
@@ -40,10 +33,10 @@
 		<div class="flex items-center">
 			<Logo size="md" text={data.name} logo={data.logo} logoDark={data.logo_dark} />
 			<ul class="flex flex-1 justify-center gap-18">
-				{#if dev ? PUBLIC_DOC_URL : data.contentTypes?.doc}
+				{#if devContentUrl('doc') || data.contentTypes?.doc}
 					<li>
 						<a
-							href={dev ? PUBLIC_DOC_URL : resolve('doc')}
+							href={devContentUrl('doc') || resolve('doc')}
 							target="_blank"
 							rel="external noopener noreferrer"
 						>
@@ -62,22 +55,22 @@
 						</a>
 					</li>
 				{/if}
-				{#if dev ? PUBLIC_TUTORIAL_URL : data.contentTypes?.tutorial}
+				{#if devContentUrl('tutorial') || data.contentTypes?.tutorial}
 					<li>
 						<a href={resolve('tutorial')} data-sveltekit-preload-data>Tutorials</a>
 					</li>
 				{/if}
-				{#if dev ? PUBLIC_EXAMPLE_URL : data.contentTypes?.example}
+				{#if devContentUrl('example') || data.contentTypes?.example}
 					<li>
 						<a href={resolve('example')} data-sveltekit-preload-data>Examples</a>
 					</li>
 				{/if}
-				{#if dev ? PUBLIC_GUIDE_URL : data.contentTypes?.guide}
+				{#if devContentUrl('guide') || data.contentTypes?.guide}
 					<li>
 						<a href={resolve('guide')} data-sveltekit-preload-data>Guides</a>
 					</li>
 				{/if}
-				{#if dev ? PUBLIC_BLOG_URL : data.contentTypes?.blog}
+				{#if devContentUrl('blog') || data.contentTypes?.blog}
 					<li>
 						<a href={resolve('blog')} data-sveltekit-preload-data>Blog</a>
 					</li>
